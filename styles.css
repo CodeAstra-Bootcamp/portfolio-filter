@@ -21,6 +21,16 @@
   text-decoration: none;
 }
 
+#portfolio #filters a.inactive {
+  background-color: #7f8c8d;
+}
+
+#portfolio #filters a.inactive:hover,
+#portfolio #filters a.inactive:active,
+#portfolio #filters a.inactive:link {
+  background-color: #95a5a6;
+}
+
 #portfolio .project-thumbnail {
   height: 200px;
   text-align: center;
