@@ -7,11 +7,14 @@
   color: #FFF;
   padding: 0.5em 1em;
   border-radius: 4px;
-  width: 10em;
+  width: 11em;
   display: inline-block;
-  text-align: center;
   margin-right: 1em;
   transition: background-color 0.3s ease-in;
+}
+
+#portfolio #filters a .fa {
+  margin-right: 0.5em;
 }
 
 #portfolio #filters a:hover,
@@ -19,6 +22,14 @@
 #portfolio #filters a:link {
   background-color: #34495e;
   text-decoration: none;
+}
+
+#portfolio #filters a .fa-check-square-o {
+  display: inline-block;
+}
+
+#portfolio #filters a .fa-square-o {
+  display: none;
 }
 
 #portfolio #filters a.inactive {
@@ -29,6 +40,14 @@
 #portfolio #filters a.inactive:active,
 #portfolio #filters a.inactive:link {
   background-color: #95a5a6;
+}
+
+#portfolio #filters a.inactive .fa-check-square-o {
+  display: none;
+}
+
+#portfolio #filters a.inactive .fa-square-o {
+  display: inline-block;
 }
 
 #portfolio .project-thumbnail {
