@@ -4,31 +4,32 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
   <script src="app.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
-<body>
-  <h1>Portfolio</h1>
-  <section id="portfolio" class="container">
+<body ng-app="portfolioFilter">
+  <section id="portfolio" class="container" ng-controller="PortfolioCtrl">
+    <h1>Portfolio</h1>
     <div id="filters">
-      <a class="all" data-filter="*" href="#"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>All</a>
-      <a data-filter=".web" href="#"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>WebDev</a>
-      <a data-filter=".art" href="#"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>Art/Innovation</a>
-      <a data-filter=".graphic" href="#"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>Graphic Work</a>
+      <a ng-class="filterAllButtonClassName()" ng-click="toggleAll()"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>All</a>
+      <a ng-class="filterButtonClassName('web')" ng-click="toggleCategory('web')"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>WebDev</a>
+      <a ng-class="filterButtonClassName('art')" ng-click="toggleCategory('art')"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>Art/Innovation</a>
+      <a ng-class="filterButtonClassName('graphic')" ng-click="toggleCategory('graphic')"><i class="fa fa-check-square-o"></i><i class="fa fa-square-o"></i>Graphic Work</a>
     </div>
     <div class="row">
-      <article class="col-md-3 project-thumbnail web"><span>Web 1</span></article>
-      <article class="col-md-3 project-thumbnail art"><span>Art 1</span></article>
-      <article class="col-md-3 project-thumbnail graphic"><span>Graphic 1</span></article>
-      <article class="col-md-3 project-thumbnail web"><span>Web 2</span></article>
-      <article class="col-md-3 project-thumbnail graphic"><span>Graphic 2</span></article>
-      <article class="col-md-3 project-thumbnail web"><span>Web 3</span></article>
-      <article class="col-md-3 project-thumbnail art"><span>Art 2</span></article>
-      <article class="col-md-3 project-thumbnail web"><span>Web 4</span></article>
-      <article class="col-md-3 project-thumbnail graphic"><span>Graphic 3</span></article>
-      <article class="col-md-3 project-thumbnail graphic"><span>Graphic 4</span></article>
-      <article class="col-md-3 project-thumbnail art"><span>Art 3</span></article>
-      <article class="col-md-3 project-thumbnail web"><span>Web 5</span></article>
+      <article class="col-md-3 project-thumbnail web" ng-show="showCategory('web')"><span>Web 1</span></article>
+      <article class="col-md-3 project-thumbnail art" ng-show="showCategory('art')"><span>Art 1</span></article>
+      <article class="col-md-3 project-thumbnail graphic" ng-show="showCategory('graphic')"><span>Graphic 1</span></article>
+      <article class="col-md-3 project-thumbnail web" ng-show="showCategory('web')"><span>Web 2</span></article>
+      <article class="col-md-3 project-thumbnail graphic" ng-show="showCategory('graphic')"><span>Graphic 2</span></article>
+      <article class="col-md-3 project-thumbnail web" ng-show="showCategory('web')"><span>Web 3</span></article>
+      <article class="col-md-3 project-thumbnail art" ng-show="showCategory('art')"><span>Art 2</span></article>
+      <article class="col-md-3 project-thumbnail web" ng-show="showCategory('web')"><span>Web 4</span></article>
+      <article class="col-md-3 project-thumbnail graphic" ng-show="showCategory('graphic')"><span>Graphic 3</span></article>
+      <article class="col-md-3 project-thumbnail graphic" ng-show="showCategory('graphic')"><span>Graphic 4</span></article>
+      <article class="col-md-3 project-thumbnail art" ng-show="showCategory('art')"><span>Art 3</span></article>
+      <article class="col-md-3 project-thumbnail web" ng-show="showCategory('web')"><span>Web 5</span></article>
     </div>
   </section>
 </body>

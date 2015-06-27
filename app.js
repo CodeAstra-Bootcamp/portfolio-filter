@@ -1,33 +1,42 @@
-$(document).ready(function() {
-  window.firstLoad = true;
+var portfolioFilter = angular.module('portfolioFilter', []);
 
-  $('#portfolio a').click(function(ev) {
-    ev.preventDefault();
-    if (window.firstLoad) {
-      $('#portfolio a').not('.all').addClass('inactive');
-      $('#portfolio .project-thumbnail').addClass('fadeOut');
-    }
-    if ($(this).hasClass('all')) {
-      if ($(this).hasClass('inactive')) {
-        $('#portfolio a').removeClass('inactive');
-        $('#portfolio .project-thumbnail').removeClass('fadeOut');
-      } else {
-        $('#portfolio a').addClass('inactive');
-        $('#portfolio .project-thumbnail').addClass('fadeOut');
-      }
+portfolioFilter.controller('PortfolioCtrl', function ($scope) {
+  $scope.allCategories = ['web', 'art', 'graphic'];
+  $scope.visibleCategories = $scope.allCategories.slice(0);
+
+  $scope.toggleAll = function () {
+    if ($scope.visibleCategories.length == $scope.allCategories.length) {
+      $scope.visibleCategories = [];
     } else {
-      if ($(this).hasClass('inactive')) {
-        if($('#portfolio a.inactive').not('.all').length == 1) {
-          $('#portfolio a.all').removeClass('inactive');
-        } else {
-          $('#portfolio a.all').addClass('inactive');
-        }
-      } else {
-        $('#portfolio a.all').addClass('inactive');
-      }
-      $(this).toggleClass('inactive');
-      $('#portfolio .project-thumbnail' + this.dataset.filter).toggleClass('fadeOut');
+      $scope.visibleCategories = $scope.allCategories.slice(0);
     }
-    window.firstLoad = false;
-  });
+  };
+
+  $scope.toggleCategory = function(category) {
+    if ($scope.visibleCategories.indexOf(category) != -1) {
+      $scope.visibleCategories.splice($scope.visibleCategories.indexOf(category), 1);
+    } else {
+      $scope.visibleCategories.push(category);
+    }
+  };
+
+  $scope.showCategory = function(category) {
+    return $scope.visibleCategories.indexOf(category) != -1;
+  };
+
+  $scope.filterButtonClassName = function(category) {
+    if ($scope.showCategory(category)) {
+      return '';
+    } else {
+      return 'inactive';
+    }
+  };
+
+  $scope.filterAllButtonClassName = function() {
+    if ($scope.visibleCategories.length == $scope.allCategories.length) {
+      return '';
+    } else {
+      return 'inactive';
+    }
+  };
 });
